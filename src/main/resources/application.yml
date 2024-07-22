@@ -1,0 +1,24 @@
+
+
+#spring:
+#  application:
+#    name:xchat
+#  data:
+#    mongodb:
+#      username: veekshith
+#      password: veekshith
+#      host: localhost
+#      port: 27017
+#      database: chat_app
+#      authentication-database: admin
+#server:
+#  port: 8088
+
+
+spring:
+  data:
+    mongodb:
+      uri: mongodb+srv://admin:admin1123@cluster0.dp01ztl.mongodb.net/chat_app
+      database: chat_app
+server:
+  port: 8088
