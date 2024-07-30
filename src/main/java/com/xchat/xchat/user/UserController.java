@@ -10,32 +10,32 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
-
 @Controller
 @RequiredArgsConstructor
 public class UserController {
 
-    private  final UserService service;
+    private final UserService userService;
 
     @MessageMapping("/user.addUser")
-    @SendTo("/user/topic")
-    public User addUser(@Payload User user){
-        service.saveUser(user);
+    @SendTo("/user/public")
+    public User addUser(
+            @Payload User user
+    ) {
+        userService.saveUser(user);
         return user;
     }
 
-    @MessageMapping("/user.disConnectUser")
-    @SendTo("/user/topic")
-    public User disconnect(@Payload User user){
-        service.disconnect(user);
+    @MessageMapping("/user.disconnectUser")
+    @SendTo("/user/public")
+    public User disconnectUser(
+            @Payload User user
+    ) {
+        userService.disconnect(user);
         return user;
     }
 
     @GetMapping("/users")
-    public ResponseEntity<List<User>> findConnectedUsers(){
-        return ResponseEntity.ok(service.findConnectedUsers());
-
+    public ResponseEntity<List<User>> findConnectedUsers() {
+        return ResponseEntity.ok(userService.findConnectedUsers());
     }
-
-
 }

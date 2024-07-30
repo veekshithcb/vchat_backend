@@ -14,8 +14,6 @@ import java.util.Stack;
 public class User {
     @Id
     private String nickName;
-    private  String fullName;
+    private String fullName;
     private Status status;
-
-
 }
