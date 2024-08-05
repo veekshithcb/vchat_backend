@@ -21,14 +21,14 @@ spring:
       uri: mongodb+srv://admin:admin1123@cluster0.dp01ztl.mongodb.net/chat_app
       database: chat_app2
 
-#    redis:
-#      database: 0
-#      host: redis-13171.c212.ap-south-1-1.ec2.cloud.redislabs.com
-#      port: 13171
-#      password: 0MkOR2CQ8yVJJ6iQHJYDn02HjeL8KFTa
-#      timeout: 60000
-#    session:
-#      store-type: redis
+    redis:
+      database: 0
+      host: redis-13171.c212.ap-south-1-1.ec2.cloud.redislabs.com
+      port: 13171
+      password: 0MkOR2CQ8yVJJ6iQHJYDn02HjeL8KFTa
+      timeout: 60000
+    session:
+      store-type: redis
 
 server:
   port: 8088
