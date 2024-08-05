@@ -20,9 +20,9 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
     @Override
     public void configureMessageBroker(MessageBrokerRegistry registry) {
-        registry.enableSimpleBroker("/user");
-        registry.setApplicationDestinationPrefixes("/app");
-        registry.setUserDestinationPrefix("/user");
+        registry.enableSimpleBroker("/user" , "/chatroom");
+        registry.setApplicationDestinationPrefixes("/app");// it is the prefix for all apis --prefix use to send messge to the endpoint ec app/chat
+        registry.setUserDestinationPrefix("/user"); // used for line 23 it sets prefix for sending used to access this in messaging templeate and sends to user/recipeint/queue/message
     }
 
     @Override
