@@ -22,8 +22,7 @@ public class ChatController {
 
 
     //for private message
-
-    // message arrives at "/destprefix(app)/ chat"
+    // message arrives at "/app(destprefix)/ chat"
     @MessageMapping("/chat")
     public void processMessage(@Payload ChatMessage chatMessage) {
         ChatMessage savedMsg = chatMessageService.save(chatMessage);

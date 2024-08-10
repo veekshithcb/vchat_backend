@@ -19,6 +19,7 @@ public class UserController {
     private final UserService userService;
 
 
+    //message mapping to app/user.addUser
     @MessageMapping("/user.addUser")
     @SendTo("/user/public")
     public User addUser(
