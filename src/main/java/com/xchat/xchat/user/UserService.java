@@ -17,11 +17,11 @@ public class UserService {
     }
 
     public void disconnect(User user) {
-        var storedUser = repository.findById(user.getNickName()).orElse(null);
-        if (storedUser != null) {
-            storedUser.setStatus(Status.OFFLINE);
-            repository.save(storedUser);
-        }
+        User storedUser = repository.findByUsername(user.getUsername()).orElse(null);
+//        if (storedUser != null) {
+//            user.setStatus(Status.OFFLINE);
+//            repository.save(storedUser);
+//        }
     }
 
     public List<User> findConnectedUsers() {

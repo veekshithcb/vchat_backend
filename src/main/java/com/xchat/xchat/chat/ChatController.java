@@ -40,7 +40,6 @@ public class ChatController {
 
     //for public chat
     @MessageMapping("/message")
-
     //sends to user/chatroom/public
     @SendTo("/chatroom/public")
     public ChatMessage receiveMessage(@Payload ChatMessage message){

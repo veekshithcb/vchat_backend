@@ -8,13 +8,14 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Stack;
 
-@Getter
+
 @Setter
+@Getter
 @Document
 public class User {
     @Id
-    private String nickName;
-    private String fullName;
+    private String username;
     private String password;
     private Status status;
+
 }
