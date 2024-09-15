@@ -1,6 +1,5 @@
 package com.xchat.xchat.user;
 
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,11 +16,11 @@ public class UserService {
     }
 
     public void disconnect(User user) {
-        User storedUser = repository.findByUsername(user.getUsername()).orElse(null);
-//        if (storedUser != null) {
-//            user.setStatus(Status.OFFLINE);
-//            repository.save(storedUser);
-//        }
+        var storedUser = repository.findById(user.getNickName()).orElse(null);
+        if (storedUser != null) {
+            storedUser.setStatus(Status.OFFLINE);
+            repository.save(storedUser);
+        }
     }
 
     public List<User> findConnectedUsers() {

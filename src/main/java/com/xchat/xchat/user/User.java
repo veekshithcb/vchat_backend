@@ -14,8 +14,7 @@ import java.util.Stack;
 @Document
 public class User {
     @Id
-    private String username;
-    private String password;
+    private String nickName;
+    private String fullName;
     private Status status;
-
 }
