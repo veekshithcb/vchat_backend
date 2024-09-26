@@ -18,7 +18,7 @@
 spring:
   data:
     mongodb:
-      uri: mongodb+srv://admin:admin1123@cluster0.dp01ztl.mongodb.net/chat_app
+      uri: mongodb+srv://admin:admin1123@cluster0.dp01ztl.mongodb.net/chat_app2
       database: chat_app2
 
     redis:

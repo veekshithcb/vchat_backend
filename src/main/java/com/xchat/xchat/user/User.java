@@ -14,7 +14,10 @@ import java.util.Stack;
 @Document
 public class User {
     @Id
-    private String nickName;
-    private String fullName;
+    private String username;
+    private String email;
+    private String password;
     private Status status;
+
+
 }

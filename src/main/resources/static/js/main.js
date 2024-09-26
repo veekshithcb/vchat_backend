@@ -10,15 +10,15 @@ const chatArea = document.querySelector('#chat-messages');
 const logout = document.querySelector('#logout');
 
 let stompClient = null;
-let username = null;
-let password = null;
+let nickname = null;
+let fullname = null;
 let selectedUserId = null;
 
 function connect(event) {
-    username = document.querySelector('#username').value.trim();
-    password = document.querySelector('#password').value.trim();
+    nickname = document.querySelector('#nickname').value.trim();
+    fullname = document.querySelector('#fullname').value.trim();
 
-    if (username && password) {
+    if (nickname && fullname) {
         usernamePage.classList.add('hidden');
         chatPage.classList.remove('hidden');
 
@@ -32,23 +32,22 @@ function connect(event) {
 
 
 function onConnected() {
-    stompClient.subscribe(`/user/${username}/queue/messages`, onMessageReceived);
+    stompClient.subscribe(`/user/${nickname}/queue/messages`, onMessageReceived);
     stompClient.subscribe(`/user/public`, onMessageReceived);
 
     // register the connected user
-    //it is sent to user/public
     stompClient.send("/app/user.addUser",
         {},
-        JSON.stringify({username: username, password: password, status: 'ONLINE'})
+        JSON.stringify({nickName: nickname, fullName: fullname, status: 'ONLINE'})
     );
-    document.querySelector('#connected-user-fullname').textContent = username;
+    document.querySelector('#connected-user-fullname').textContent = fullname;
     findAndDisplayConnectedUsers().then();
 }
 
 async function findAndDisplayConnectedUsers() {
     const connectedUsersResponse = await fetch('/users');
     let connectedUsers = await connectedUsersResponse.json();
-    connectedUsers = connectedUsers.filter(user => user.username !== username);
+    connectedUsers = connectedUsers.filter(user => user.nickName !== nickname);
     const connectedUsersList = document.getElementById('connectedUsers');
     connectedUsersList.innerHTML = '';
 
@@ -65,11 +64,11 @@ async function findAndDisplayConnectedUsers() {
 function appendUserElement(user, connectedUsersList) {
     const listItem = document.createElement('li');
     listItem.classList.add('user-item');
-    listItem.id = user.username;
+    listItem.id = user.nickName;
 
     const userImage = document.createElement('img');
     userImage.src = '../img/user_icon.png';
-    userImage.alt = user.username;
+    userImage.alt = user.fullName;
 
     const usernameSpan = document.createElement('span');
     usernameSpan.textContent = user.fullName;
@@ -108,7 +107,7 @@ function userItemClick(event) {
 function displayMessage(senderId, content) {
     const messageContainer = document.createElement('div');
     messageContainer.classList.add('message');
-    if (senderId === username) {
+    if (senderId === nickname) {
         messageContainer.classList.add('sender');
     } else {
         messageContainer.classList.add('receiver');
@@ -120,7 +119,7 @@ function displayMessage(senderId, content) {
 }
 
 async function fetchAndDisplayUserChat() {
-    const userChatResponse = await fetch(`/messages/${username}/${selectedUserId}`);
+    const userChatResponse = await fetch(`/messages/${nickname}/${selectedUserId}`);
     const userChat = await userChatResponse.json();
     chatArea.innerHTML = '';
     userChat.forEach(chat => {
@@ -140,13 +139,13 @@ function sendMessage(event) {
     const messageContent = messageInput.value.trim();
     if (messageContent && stompClient) {
         const chatMessage = {
-            senderId: username,
+            senderId: nickname,
             recipientId: selectedUserId,
             content: messageInput.value.trim(),
             timestamp: new Date()
         };
         stompClient.send("/app/chat", {}, JSON.stringify(chatMessage));
-        displayMessage(username, messageInput.value.trim());
+        displayMessage(nickname, messageInput.value.trim());
         messageInput.value = '';
     }
     chatArea.scrollTop = chatArea.scrollHeight;
@@ -180,7 +179,7 @@ async function onMessageReceived(payload) {
 function onLogout() {
     stompClient.send("/app/user.disconnectUser",
         {},
-        JSON.stringify({username: username, status: 'OFFLINE'})
+        JSON.stringify({nickName: nickname, fullName: fullname, status: 'OFFLINE'})
     );
     window.location.reload();
 }
