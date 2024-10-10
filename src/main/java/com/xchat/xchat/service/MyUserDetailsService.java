@@ -29,7 +29,7 @@ public class MyUserDetailsService implements UserDetailsService {
     //checking  if users is there id db
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepo.findByUsername(username);
+        User user = userRepo.findOneByUsername(username);
         if (user == null) {
             System.out.println("User Not Found");
             throw new UsernameNotFoundException("user not found");

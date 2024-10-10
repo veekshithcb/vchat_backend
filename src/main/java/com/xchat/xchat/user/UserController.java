@@ -11,20 +11,14 @@ import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 @Controller
 @RequiredArgsConstructor
 public class UserController {
 
-
-
     private final UserService userService;
-
 
     @Autowired
     private SimpMessagingTemplate messagingTemplate;
@@ -48,6 +42,16 @@ public class UserController {
     @GetMapping("/users")
     public ResponseEntity<List<User>> findConnectedUsers() {
         return ResponseEntity.ok(userService.findConnectedUsers());
+    }
+
+    @GetMapping("/user")
+    public ResponseEntity<List<User>> findByUsernameContaining(@RequestParam String name) {
+        return ResponseEntity.ok(userService.findConnectedUsersByName(name));
+    }
+
+    @GetMapping("/getUserByEmail")
+    public ResponseEntity<User> getUserByEmail(@RequestParam String email) {
+        return ResponseEntity.ok(userService.getUserByEmail(email));
     }
 
     @PostMapping("/register")

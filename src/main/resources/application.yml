@@ -16,6 +16,14 @@
 
 
 spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 784315048523-hc7pkmeraab01t2atpl7bfnscpek68n9.apps.googleusercontent.com
+            client-secret: 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
+
   data:
     mongodb:
       uri: mongodb+srv://admin:admin1123@cluster0.dp01ztl.mongodb.net/chat_app2
@@ -29,6 +37,10 @@ spring:
       timeout: 60000
     session:
       store-type: redis
+
+  main:
+    allow-circular-references: true
+
 
 server:
   port: 8088

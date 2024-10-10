@@ -14,6 +14,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
@@ -26,16 +27,24 @@ public class SecurityConfig {
     @Autowired
     private UserDetailsService userDetailsService;
 
+
+    @Autowired
+    private AuthenticationSuccessHandler customOAuth2SuccessHandler;
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         //disabling csrf
         //CSRF (Cross-Site Request Forgery)  by default all request except get req csrf token should be sent
+
         return http.csrf(customizer -> customizer.disable())
                 //removing auth from login and register endpoint
                 .authorizeHttpRequests(request -> request
 
                         .requestMatchers("/login", "/register" ,  "/app/**" ,"/user/**" ,"ws/**" ,"/js/**",  "/static/**").permitAll()
                         .anyRequest().authenticated())
+//                .oauth2Login(Customizer -> Customizer.defaultSuccessUrl("http://localhost:3000/" , true))
+
+
 
 
                 // just basic auth with username and password
@@ -45,7 +54,9 @@ public class SecurityConfig {
                 //        This approach eliminates the need to maintain session data on the server, which can reduce memory usage and improve scalability.
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
-
+                .oauth2Login(oauth2 -> oauth2// Custom login page
+                        .successHandler(customOAuth2SuccessHandler)  // Use the custom success handler
+                )
                 .build();
 //
 

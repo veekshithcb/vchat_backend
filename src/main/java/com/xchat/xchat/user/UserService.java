@@ -22,12 +22,12 @@ public class UserService {
     @Autowired
     AuthenticationManager authManager;
 
-    private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
+    private final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
 
-    public void saveUser(User user) {
+    public User saveUser(User user) {
         user.setPassword(encoder.encode(user.getPassword()));
         user.setStatus(Status.ONLINE);
-        repository.save(user);
+        return repository.save(user);
     }
 
     public void disconnect(User user) {
@@ -51,4 +51,10 @@ public class UserService {
     public List<User> findConnectedUsers() {
         return repository.findAllByStatus(Status.ONLINE);
     }
+
+    public User getUserByEmail(String email) {
+        return repository.findByEmail(email);
+    }
+
+    public List<User> findConnectedUsersByName(String name) {return repository.findByUsernameContaining(name);}
 }

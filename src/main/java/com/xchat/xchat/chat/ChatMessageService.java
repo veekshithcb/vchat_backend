@@ -23,7 +23,20 @@ public class ChatMessageService {
     }
 
     public List<ChatMessage> findChatMessages(String senderId, String recipientId) {
+
         var chatId = chatRoomService.getChatRoomId(senderId, recipientId, false);
+        System.out.println(chatId);
+
+
+
         return chatId.map(repository::findByChatId).orElse(new ArrayList<>());
+
+
+//        List<ChatMessage> res = new ArrayList<>() ;
+//        List<ChatMessage> res1 =  repository.findBySenderIdAndRecipientId(senderId ,recipientId );
+//        List<ChatMessage> res2 =  repository.findBySenderIdAndRecipientId( recipientId  , senderId);
+//        res.addAll(res1);
+//        res.addAll(res2);
+//        return res;
     }
 }
