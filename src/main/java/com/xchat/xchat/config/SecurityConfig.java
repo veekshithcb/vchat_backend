@@ -40,7 +40,7 @@ public class SecurityConfig {
                 //removing auth from login and register endpoint
                 .authorizeHttpRequests(request -> request
 
-                        .requestMatchers("/login", "/register" ,  "/app/**" ,"/user/**" ,"ws/**" ,"/js/**",  "/static/**").permitAll()
+                        .requestMatchers("/login", "/register" ,  "/app/**" ,"/user/**" ,"ws/**" ,"/js/**","/hello" ,  "/static/**").permitAll()
                         .anyRequest().authenticated())
 //                .oauth2Login(Customizer -> Customizer.defaultSuccessUrl("http://localhost:3000/" , true))
 

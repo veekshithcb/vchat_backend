@@ -8,6 +8,7 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
@@ -53,6 +54,10 @@ public class CustomOAuth2SuccessHandler implements AuthenticationSuccessHandler 
             cookie.setHttpOnly(false);  // Protect cookie from JavaScript access
             cookie.setPath("/");
             response.addCookie(cookie);
+
+
+//            response.sendRedirect("http://localhost:3000/");
+
             response.sendRedirect("https://vchat.projects.veekshith.dev/");
 
         }

@@ -14,6 +14,9 @@
 #server:
 #  port: 8088
 
+myapp:
+  api:
+    url: https://vchat.projects.veekshith.dev
 
 spring:
   security:
