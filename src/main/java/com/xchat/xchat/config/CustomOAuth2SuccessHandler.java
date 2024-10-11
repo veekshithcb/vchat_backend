@@ -58,7 +58,7 @@ public class CustomOAuth2SuccessHandler implements AuthenticationSuccessHandler 
 
 //            response.sendRedirect("http://localhost:3000/");
 
-            response.sendRedirect("https://vchat.projects.veekshith.dev/");
+            response.sendRedirect("http://vchat.projects.veekshith.dev/");
 
         }
 
