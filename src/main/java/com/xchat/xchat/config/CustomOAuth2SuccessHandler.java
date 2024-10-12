@@ -22,7 +22,6 @@ import static com.xchat.xchat.user.Status.ONLINE;
 @Component
 public class CustomOAuth2SuccessHandler implements AuthenticationSuccessHandler {
 
-
     @Autowired
     private JWTService jwtService;
 
@@ -39,30 +38,20 @@ public class CustomOAuth2SuccessHandler implements AuthenticationSuccessHandler 
             OidcUser oidcUser = (OidcUser) authentication.getPrincipal();
             String email = oidcUser.getEmail();
             String username = oidcUser.getFullName();
-
-
             Optional<User> user = Optional.ofNullable(userService.getUserByEmail(email));
-
             if (user.isEmpty()) {
                 user = Optional.ofNullable(userService.saveUser(new User(username, email, "", Status.ONLINE)));
             }
-
             String token = jwtService.generateToken(user.get().getUsername());
             Cookie cookie = new Cookie("token", token);
             // Set cookie attributes
             cookie.setMaxAge(7 * 24 * 60 * 60);  // 1 week
-            cookie.setHttpOnly(true);  // Protect cookie from JavaScript access
+            cookie.setHttpOnly(false);  // Protect cookie from JavaScript access
             cookie.setPath("/");
             response.addCookie(cookie);
-
-
 //            response.sendRedirect("http://localhost:3000/");
-
-            response.sendRedirect("https://vchat.projects.veekshith.dev/");
+            response.sendRedirect("https://vchat.backend.projects.veekshith.dev/hello");
 
         }
-
-
-
     }
 }
