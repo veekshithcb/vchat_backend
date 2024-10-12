@@ -43,7 +43,7 @@ public class CustomOAuth2SuccessHandler implements AuthenticationSuccessHandler 
                 user = Optional.ofNullable(userService.saveUser(new User(username, email, "", Status.ONLINE)));
             }
             String token = jwtService.generateToken(user.get().getUsername());
-            Cookie cookie = new Cookie("token", "token");
+            Cookie cookie = new Cookie("token", token);
             // Set cookie attributes
             cookie.setMaxAge(7 * 24 * 60 * 60);  // 1 week
             cookie.setHttpOnly(false);  // Protect cookie from JavaScript access
