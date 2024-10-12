@@ -10,7 +10,8 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**") // Allow all endpoints
-                .allowedOrigins( "http://localhost:3000/") // Specify your front-end origin
+
+                .allowedOrigins("https://vchat.projects.veekshith.dev", "http://localhost:3000")
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // Allowed HTTP methods
                 .allowCredentials(true); // If you need to send credentials
     }
