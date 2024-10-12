@@ -68,14 +68,12 @@ public class UserController {
         String jwt = userService.verify(user);
 
         Cookie cookie = new Cookie("token", jwt);
+
         cookie.setHttpOnly(true);
         cookie.setSecure(true); // Use true in production to ensure it's only sent over HTTPS
-        cookie.setPath("/");
         cookie.setMaxAge(7 * 24 * 60 * 60); // 7 days
-
-
+        cookie.setDomain("vchat.projects.veekshith.dev");
         response.addCookie(cookie);
-
         messagingTemplate.convertAndSend("/user/public/userjoined", user);
 
         return jwt;
