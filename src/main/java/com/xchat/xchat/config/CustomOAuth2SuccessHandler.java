@@ -53,8 +53,8 @@ public class CustomOAuth2SuccessHandler implements AuthenticationSuccessHandler 
             cookie.setPath("/");
 
             response.addCookie(cookie);
-            response.sendRedirect("http://localhost:3000/");
-//            response.sendRedirect("https://vchat.projects.veekshith.dev/");
+
+            response.sendRedirect("https://vchat.projects.veekshith.dev/");
 
         }
     }
