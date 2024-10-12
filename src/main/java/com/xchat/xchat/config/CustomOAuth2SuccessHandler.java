@@ -46,7 +46,7 @@ public class CustomOAuth2SuccessHandler implements AuthenticationSuccessHandler 
             Cookie cookie = new Cookie("token", token);
             // Set cookie attributes
             cookie.setMaxAge(7 * 24 * 60 * 60);  // 1 week
-            cookie.setHttpOnly(false);  // Protect cookie from JavaScript access
+            cookie.setHttpOnly(true);  // Protect cookie from JavaScript access
             cookie.setPath("/");
             response.addCookie(cookie);
 //            response.sendRedirect("http://localhost:3000/");
