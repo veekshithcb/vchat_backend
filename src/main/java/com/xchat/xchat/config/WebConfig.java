@@ -11,7 +11,7 @@ public class WebConfig implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**") // Allow all endpoints
 
-                .allowedOrigins("https://vchat.projects.veekshith.dev", "http://localhost:3000")
+                .allowedOrigins("http://localhost:3000" , "https://vchat.projects.veekshith.dev")
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // Allowed HTTP methods
                 .allowCredentials(true); // If you need to send credentials
     }

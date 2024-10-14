@@ -19,3 +19,21 @@ VOLUME /tmp
 COPY --from=build /app/target/*.jar app.jar
 ENTRYPOINT ["java","-jar","/app.jar"]
 EXPOSE 8080
+
+## Use an official OpenJDK runtime as a parent image
+#FROM openjdk:17-jdk-alpine
+#
+## Set the working directory inside the container
+#WORKDIR /app
+#
+## Add the jar file built from the Spring Boot app
+#ARG JAR_FILE=target/*.jar
+#
+## Copy the jar file into the container
+#COPY ${JAR_FILE} app.jar
+#
+## Expose the port on which the Spring Boot app will run
+#EXPOSE 8088
+#
+## Run the jar file
+#ENTRYPOINT ["java", "-jar", "/app/app.jar"]
