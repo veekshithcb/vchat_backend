@@ -46,7 +46,7 @@ public class CustomOAuth2SuccessHandler implements AuthenticationSuccessHandler 
             Cookie cookie = new Cookie("token", token);
 //            cookie.setHttpOnly(false);
             cookie.setSecure(true);
-            cookie.setDomain("vchat.projects.veekshith.dev");
+            cookie.setDomain("veekshith.dev");
             // Set cookie attributes
             cookie.setMaxAge(7 * 24 * 60 * 60);  // 1 week
 
