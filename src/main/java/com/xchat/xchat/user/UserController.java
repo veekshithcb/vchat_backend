@@ -67,7 +67,7 @@ public class UserController {
 
         String jwt = userService.verify(user);
 
-        Cookie cookie = new Cookie("token", jwt);
+        Cookie cookie = new Cookie("token_vchat", jwt);
 
         cookie.setHttpOnly(true);
         cookie.setSecure(true); // Use true in production to ensure it's only sent over HTTPS
