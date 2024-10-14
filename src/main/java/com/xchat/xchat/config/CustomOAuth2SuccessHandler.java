@@ -44,7 +44,7 @@ public class CustomOAuth2SuccessHandler implements AuthenticationSuccessHandler 
             }
             String token = jwtService.generateToken(user.get().getUsername());
             Cookie cookie = new Cookie("token", token);
-            cookie.setHttpOnly(false);
+//            cookie.setHttpOnly(false);
             cookie.setSecure(true);
             cookie.setDomain("vchat.projects.veekshith.dev");
             // Set cookie attributes
