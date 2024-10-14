@@ -34,7 +34,7 @@ public class SecurityConfig {
     private AuthenticationSuccessHandler customOAuth2SuccessHandler;
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http , ClientRegistrationRepository clientRegistrationRepository) throws Exception {
         //disabling csrf
         //CSRF (Cross-Site Request Forgery)  by default all request except get req csrf token should be sent
 
@@ -58,6 +58,9 @@ public class SecurityConfig {
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
                 .oauth2Login(oauth2 -> oauth2// Custom login page
                         .successHandler(customOAuth2SuccessHandler)  // Use the custom success handler
+                        .authorizationEndpoint(authorizationEndpoint -> authorizationEndpoint
+                                .authorizationRequestResolver(customAuthorizationRequestResolver(clientRegistrationRepository)))
+
                 )
                 .build();
 //
