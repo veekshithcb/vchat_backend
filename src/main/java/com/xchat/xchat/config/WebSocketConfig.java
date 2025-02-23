@@ -22,7 +22,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     public void configureMessageBroker(MessageBrokerRegistry registry) {
         registry.enableSimpleBroker("/user" , "/chatroom");
         registry.setApplicationDestinationPrefixes("/app");// it is the prefix for all apis --prefix use to send messge to the endpoint ec app/chat
-        registry.setUserDestinationPrefix("/user"); // used for line 23 it sets prefix for sending used to access this in messaging templeate and sends to user/recipeint/queue/message
+        registry.setUserDestinationPrefix("/user"); // it sets prefix for sending used to access this in messaging templeate and sends to user/recipeint/queue/message
     }
 
     @Override
@@ -30,6 +30,8 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
         registry.addEndpoint("/ws").setAllowedOriginPatterns("*").withSockJS();
     }
 
+
+    //are responsible for serializing and deserializing objects during HTTP request and response processing.
     @Override
     public boolean configureMessageConverters(List<MessageConverter> messageConverters) {
         DefaultContentTypeResolver resolver = new DefaultContentTypeResolver();
