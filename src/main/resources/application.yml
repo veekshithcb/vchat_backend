@@ -14,36 +14,7 @@
 #server:
 #  port: 8088
 
-myapp:
-  api:
-    url: https://vchat.projects.veekshith.dev
 
 spring:
-  security:
-    oauth2:
-      client:
-        registration:
-          google:
-            client-id: 784315048523-hc7pkmeraab01t2atpl7bfnscpek68n9.apps.googleusercontent.com
-            client-secret: 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
-
-  data:
-    mongodb:
-      uri: mongodb+srv://admin:admin1123@cluster0.dp01ztl.mongodb.net/chat_app2
-      database: chat_app2
-
-    redis:
-      database: 0
-      host: redis-13171.c212.ap-south-1-1.ec2.cloud.redislabs.com
-      port: 13171
-      password: 0MkOR2CQ8yVJJ6iQHJYDn02HjeL8KFTa
-      timeout: 60000
-    session:
-      store-type: redis
-
-  main:
-    allow-circular-references: true
-
-
-server:
-  port: 8088
+  profiles:
+    active: prod
