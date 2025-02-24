@@ -1,18 +1,16 @@
 package com.xchat.xchat.user;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Stack;
 
 
-@Setter
-@Getter
-@Document
+@Data
+@Builder
+@NoArgsConstructor
 @AllArgsConstructor
 public class User {
     @Id
