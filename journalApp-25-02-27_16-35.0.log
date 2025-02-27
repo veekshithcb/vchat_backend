@@ -1,7 +1,0 @@
-25-02-27 16:35:53.034 [SpringApplicationShutdownHook] INFO  o.s.m.s.b.SimpleBrokerMessageHandler - Stopping... 
-25-02-27 16:35:53.037 [SpringApplicationShutdownHook] INFO  o.s.m.s.b.SimpleBrokerMessageHandler - BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@ec3944]] 
-25-02-27 16:35:53.038 [SpringApplicationShutdownHook] INFO  o.s.m.s.b.SimpleBrokerMessageHandler - Stopped. 
-25-02-27 16:35:58.092 [main] INFO  com.xchat.xchat.XchatApplication - Starting XchatApplication using Java 17.0.6 with PID 27864 (C:\Users\veeks\OneDrive\Desktop\Vchat\vchat_backend\target\classes started by veekshith in C:\Users\veeks\OneDrive\Desktop\Vchat\vchat_backend) 
-25-02-27 16:35:58.096 [main] INFO  com.xchat.xchat.XchatApplication - The following 1 profile is active: "prod" 
-25-02-27 16:35:59.130 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode. 
-25-02-27 16:35:59.352 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 215 ms. Found 4 MongoDB repository interfaces. 
