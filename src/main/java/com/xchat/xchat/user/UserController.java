@@ -4,6 +4,9 @@ package com.xchat.xchat.user;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.handler.annotation.MessageMapping;
@@ -16,10 +19,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 @Controller
 @RequiredArgsConstructor
+@Slf4j
 public class UserController {
 
     private final UserService userService;
 
+    private UserRepositoryImpl userRepositoryImpl;
     @Autowired
     private SimpMessagingTemplate messagingTemplate;
 
@@ -76,6 +81,15 @@ public class UserController {
         response.addCookie(cookie);
         messagingTemplate.convertAndSend("/user/public/userjoined", user);
 
+
+        log.info("user logged {}" ,user.getUsername() );
+
         return jwt;
     }
+
+    @GetMapping
+    public boolean canSendNotification(String username){
+        return  userRepositoryImpl.canSendEmailNotificationForAwayUser(username);
+    }
+
 }
