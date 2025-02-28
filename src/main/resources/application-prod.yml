@@ -1,7 +1,4 @@
 
-
-
-
 myapp:
   api:
     url: https://vchat.projects.veekshith.dev
