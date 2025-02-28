@@ -29,6 +29,35 @@ spring:
     allow-circular-references: true
 
 
-server:
-  address: 0.0.0.0
-  port: ${SERVER_PORT}
+
+kafka:
+  bootstrap-servers: ${spring.kafka.bootstrap-servers}
+  producer:
+    key-serializer: org.apache.kafka.common.serialization.StringSerializer
+    value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+  consumer:
+    group-id: vchat_notifications_group
+    key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+    properties:
+      spring:
+        json:
+          trusted:
+            packages: com.xchat.xchat.email
+  properties:
+    security:
+      protocol: SASL_SSL
+    sasl:
+      mechanism: PLAIN
+      jaas:
+        config: ${spring.kafka.properties.sasl.jaas.config}
+  session:
+    timeout:
+      ms: 45000
+
+
+
+
+  server:
+    address: 0.0.0.0
+    port: ${SERVER_PORT}
