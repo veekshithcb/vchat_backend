@@ -7,3 +7,6 @@ logging:
   level:
     root: INFO
 
+springdoc:
+  swagger-ui:
+    oauth2-redirect-url: ""

@@ -37,6 +37,8 @@ kafka:
     value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
   consumer:
     group-id: vchat_notifications_group
+    auto-offset-reset: latest
+    enable-auto-commit: true
     key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
     value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
     properties:
@@ -55,7 +57,9 @@ kafka:
     timeout:
       ms: 45000
 
-
+springdoc:
+  swagger-ui:
+    oauth2-redirect-url: ""
 
 
   server:
